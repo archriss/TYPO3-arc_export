@@ -1,0 +1,31 @@
+{
+  "name": "archriss/arc-export",
+  "type": "typo3-cms-extension",
+  "version": "1.0.0",
+  "description": "This extension able dev to prepare export in multiple format",
+  "license": "GPL-2.0",
+  "authors": [
+    {
+      "name": "Christophe Monard",
+      "email": "cmonard@archriss.com",
+      "role": "Development"
+    }
+  ],
+  "require": {
+    "typo3/cms-core": "^7.6 || ^8.7"
+  },
+  "keywords": [
+    "TYPO3 CMS",
+    "Export"
+  ],
+  "homepage": "https://github.com/archriss/TYPO3-arc_utility",
+  "replace": {
+    "arc_export": "self.version",
+    "typo3-ter/arc-export": "self.version"
+  },
+  "autoload": {
+    "psr-4": {
+      "Archriss\\ArcExport\\": "Classes/"
+    }
+  }
+}

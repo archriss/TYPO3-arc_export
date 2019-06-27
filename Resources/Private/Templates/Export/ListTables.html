@@ -1,0 +1,12 @@
+<f:layout name="Export/Backend" />
+<f:section name="content">
+    <div id="arc_export">
+        <h1><f:translate key="be.title" /></h1>
+        <p><f:translate key="be.selectpage" /></p>
+        <p><f:translate key="be.warning" /></p>
+        <f:render partial="Tables" arguments="{classes: classes}" />
+        <f:if condition="{isAdmin}">
+            <f:render partial="Admin" />
+        </f:if>
+    </div>
+</f:section>

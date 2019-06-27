@@ -1,0 +1,111 @@
+<p>&nbsp;</p>
+<p><span class="important">Admin:</span> <f:translate key="be.admin" /></p>
+<p><f:translate key="be.adminTS" /></p>
+<label>arc_example/ext_typoscript_setup.txt</label><br/>
+<blockquote>
+module.tx_arcexport.settings.Archriss\ArcExample\Domain\Model\Example {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;template = {$plugin.tx_arcexample.view.templateRootPath}Export/Export.csv<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;# name displayed in selectbox in the header of the module<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;name = Example table<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;# repository is optionnal<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;repository = \Archriss\ArcExample\Domain\Repository\ExampleRepository<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;# does the table / domain model contain exported checkbox field, if yes, specify the field name<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;exportField = exported<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;# exported content type (default is text/x-csv)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;contentType =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;# encoding (default is ISO-8859-1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;charset =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;# exported file naming template (default is export-&#123;datehour&#125;.csv)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;filenameTmpl = example-&#123;datehour&#125;.csv<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;# this dateformat will be used in filename generation and will replace &#123;datehour&#125; above<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dateHourFormat = %d%m%Y-%H%M<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;# subfolder to export data to<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;subfolder = Example<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;# create pid-&lt;pid&gt; folder inside storage ?<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;usePidSubFolder = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;# settings for specifique export (settings are for arc_export, localSettings are for this one)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;settings {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# example :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# in template use &#123;localSettings.dateformat&#125;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dateformat = d/m/Y<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+}
+</blockquote>
+<p><f:translate key="be.adminTMPL" /></p>
+<label>arc_example/Resources/Private/Templates/Export/Export.csv</label><br/>
+<blockquote>
+&#123;namespace arcExport=Archriss\ArcExport\ViewHelpers&#125;<br/>
+&lt;f:layout name="Default" /&gt;<br/>
+&lt;f:section name="content"&gt;&lt;arcExport:trim&gt;<br/>
+&lt;arcExport:charsetConverter tocs="ISO-8859-1"&gt;<br/>
+"&lt;f:translate key="export.uid" extensionName="ArcExample" /&gt;";"&lt;f:translate key="export.title" extensionName="ArcExample" /&gt;"<br/>
+&lt;f:for each="&#123;rows&#125;" as="row"&gt;"&#123;row.uid&#125;";"&#123;row.title&#125;";<br/>
+&lt;/f:for&gt;<br/>
+&lt;/arcExport:charsetConverter&gt;<br/>
+&lt;/arcExport:trim&gt;&lt;/f:section&gt;<br/>
+</blockquote>
+<p><f:translate key="be.adminFILE" /></p>
+<label>Configuration du stockage</label><br/>
+<f:image src="EXT:arc_export/Resources/Public/Images/storageFolder.png" />
+<p>&nbsp;</p>
+<p><f:translate key="be.adminEXPORTED" /></p>
+<label>arc_example/Classes/Domain/Model/Example.php</label><br/>
+<blockquote>
+Class Example extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;/**<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * Is exported<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; * @var boolean<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;protected $exported = FALSE;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;public function getExported() {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $this->exported;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;public function setExported($exported) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this->exported = $exported;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+}
+</blockquote>
+<label>arc_example/Classes/Domain/Repository/ExampleRepository.php</label><br/>
+<blockquote>
+class ExampleRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;public function findByExported($pid, $exported = 0) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$query = $this->createQuery();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$query->getQuerySettings()->setStoragePageIds((array) $pid);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$query->matching($query->equals('exported', $exported));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $query->execute();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;public function countByExported($pid, $exported = 0) {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return $this->findByExported($pid, $exported)->count();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+}
+</blockquote>
+<label>arc_example/Configuration/TCA/tx_arcexample_example.php</label><br/>
+<blockquote>
+return array(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;...<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;'columns' => array(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'exported' => array(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'exclude' => 1,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'label' => 'LLL:EXT:arc_example/Resources/Private/Language/locallang_db.xlf:tx_arcexample_example.exported',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'config' => array(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'type' => 'check',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'items' => array(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array('LLL:EXT:lang/locallang_common.xlf:yes', 1),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'default' => '0',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;...<br/>
+);
+</blockquote>
+<p><f:translate key="be.adminEXPORTEDPic" /></p>
+<f:image src="EXT:arc_export/Resources/Public/Images/exported.png" />

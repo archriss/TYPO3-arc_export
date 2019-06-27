@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-04-29T02:54:16Z" product-name="arc_export">
+		<header/>
+		<body>
+			<trans-unit id="be.admin">
+				<source>Remember to create a sys folder to store copy of file, and parameter your extensions.</source>
+			</trans-unit>
+			<trans-unit id="be.adminTS">
+				<source>TS must be define in order to declare wich domain/model will let us get export. This example show standard configuration. Repository is automaticaly calculated, but can be specified using "repository" key.</source>
+			</trans-unit>
+			<trans-unit id="be.adminTMPL">
+				<source>Export use standard default template in order to display all field in TCA/table/interface/showRecordFieldList. Date field are parsed, but relation to other table not yet.</source>
+			</trans-unit>
+			<trans-unit id="be.adminFILE">
+				<source>Storage folder must be create in order to store all exported file on the server.</source>
+			</trans-unit>
+			<trans-unit id="be.adminEXPORTED">
+				<source>Domain/Repository should contain 2 functions in order to get exported limitation to work (findByExported / countByExported). This able to export only non exported data. Field name must be the same declared in TYPOSCRIPT upper.</source>
+			</trans-unit>
+			<trans-unit id="be.select">
+				<source>Select data to export bellow</source>
+			</trans-unit>
+			<trans-unit id="be.title">
+				<source>Data export</source>
+			</trans-unit>
+			<trans-unit id="be.reload">
+				<source>Reload</source>
+			</trans-unit>
+			<trans-unit id="be.selectpage">
+				<source>Please select a table to export in select menu in the header</source>
+			</trans-unit>
+			<trans-unit id="be.warning">
+				<source><![CDATA[<span class="important">Warning:</span> Only table with data in this page will be displayed.]]></source>
+			</trans-unit>
+			<trans-unit id="be.tableAvailable">
+				<source>Following datas are available for export:</source>
+			</trans-unit>
+			<trans-unit id="be.tableAvailable.canBeSelected">
+				<source>Can be selected</source>
+			</trans-unit>
+			<trans-unit id="be.record.total">
+				<source>There's %d total records in this page.</source>
+			</trans-unit>
+			<trans-unit id="be.record.exported">
+				<source>There's %d unexported records in this page.</source>
+			</trans-unit>
+			<trans-unit id="be.record.unable">
+				<source>Unable to calculate number of unexported records in this page.</source>
+			</trans-unit>
+			<trans-unit id="be.submit.total">
+				<source>Export all records</source>
+			</trans-unit>
+			<trans-unit id="be.submit.exported">
+				<source>Export unexported records and mark them as exported.</source>
+			</trans-unit>
+			<trans-unit id="be.filelist">
+				<source>File list (last one on the top)</source>
+			</trans-unit>
+			<trans-unit id="be.filelist.doNotStart">
+				<source>If your download do not start automaticaly, you can click on the green file name, it's your download.</source>
+			</trans-unit>
+			<trans-unit id="be.filelist.hint">
+				<source>File name (date) - size</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

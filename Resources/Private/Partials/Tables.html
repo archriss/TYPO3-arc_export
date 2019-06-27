@@ -1,0 +1,19 @@
+{namespace arcExport=Archriss\ArcExport\ViewHelpers}
+<f:if condition="{classes}">
+    <div class="table">
+        <p><f:translate key="be.tableAvailable" /></p>
+        <ul>
+            <f:for each="{classes}" as="items" key="table">
+                <li><arcExport:getTableName table="{table}" />
+                    <f:if condition="{items}">
+                        <ul class="table--item">
+                            <f:for each="{items}" as="item">
+                                <li>{item.title} <f:if condition="{item.inThisPage}"><sup class="green">(<f:translate key="be.tableAvailable.canBeSelected" />)</sup></f:if></li>
+                            </f:for>
+                        </ul>
+                    </f:if>
+                </li>
+            </f:for>
+        </ul>
+    </div>
+</f:if>

@@ -1,0 +1,41 @@
+{namespace arcExport=Archriss\ArcExport\ViewHelpers}
+<f:layout name="Export/Backend" />
+<f:section name="content">
+	<h1><f:translate key="be.title" />: {title} <f:be.buttons.icon uri="{f:uri.action(action: 'summaryTable', arguments: {namespace: namespace})}" icon="actions-system-refresh" title="{f:translate(key: 'be.reload')}" additionalAttributes="{id: 'summaryReload'}" /></h1>
+    <f:form action="export" controller="Export" arguments="{namespace: namespace}">
+        <p><f:translate key="be.record.total" arguments="{0: countAll}" /></p>
+        <f:form.submit value="{f:translate(key: 'be.submit.total')}" class="summary--submit" />
+    </f:form>
+    <f:if condition="{exported}">
+        <f:form action="export" controller="Export" arguments="{namespace: namespace}">
+            <f:if condition="{countExported} == -1">
+                <f:then><p><f:translate key="be.record.unable" /></p></f:then>
+                <f:else>
+                    <p><f:translate key="be.record.exported" arguments="{0: countExported}" /></p>
+                    <f:form.hidden name="onlyNonExported" value="1" />
+                    <f:if condition="{countExported} == 0">
+                        <f:then><f:form.submit value="{f:translate(key: 'be.submit.exported')}" class="summary--submit" disabled="disabled" /></f:then>
+                        <f:else><f:form.submit value="{f:translate(key: 'be.submit.exported')}" class="summary--submit" /></f:else>
+                    </f:if>
+                </f:else>
+            </f:if>
+        </f:form>
+    </f:if>
+    <f:if condition="{files}">
+        <div class="filelist">
+            <legend><f:translate key="be.filelist" /></legend>
+            <f:if condition="{download}">
+                <p><f:translate key="be.filelist.doNotStart" /></p>
+            </f:if>
+            <label><f:translate key="be.filelist.hint" /></label>
+            <ul class="ul--filelist">
+                <f:for each="{files}" as="file">
+                    <f:if condition="{download} == {file.name}">
+                        <f:then><li><f:link.action action="getFile" arguments="{namespace: namespace, file: file.identifier}" id="clickme" onclick="return top.openUrlInWindow(TYPO3.jQuery(this).attr('href'), 'WebFile')">{file.name} (<f:format.date format="d/m/Y H:i">{file.properties.creation_date}</f:format.date>) - <f:format.bytes>{file.properties.size}</f:format.bytes></f:link.action></li></f:then>
+                        <f:else><li><f:link.action action="getFile" arguments="{namespace: namespace, file: file.identifier}">{file.name} (<f:format.date format="d/m/Y H:i">{file.properties.creation_date}</f:format.date>) - <f:format.bytes>{file.properties.size}</f:format.bytes></f:link.action></li></f:else>
+                    </f:if>
+                </f:for>
+            </ul>
+        </div>
+    </f:if>
+</f:section>

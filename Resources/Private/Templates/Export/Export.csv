@@ -1,0 +1,9 @@
+{namespace arcExport=Archriss\ArcExport\ViewHelpers}
+<f:layout name="Default" />
+<f:section name="content"><arcExport:trim>
+<arcExport:charsetConverter tocs="ISO-8859-1">
+<f:for each="{tcaFields}" as="field" iteration="fieldIteration">"<arcExport:getTCALabel table="{table}" field="{field}" />"<f:if condition="{fieldIteration.isLast}"><f:else>;</f:else></f:if></f:for>
+<f:for each="{rows}" as="row"><f:for each="{tcaFields}" as="field" iteration="fieldIteration">"<f:if condition="{arcExport:isDateField(table: '{table}', field: '{field}')}"><f:then><f:format.date format="{settings.defaultDatetimeFormat}"><arcExport:getDomainField row="{row}" field="{field}" /></f:format.date></f:then><f:else><arcExport:getDomainField row="{row}" field="{field}" /></f:else></f:if>"<f:if condition="{fieldIteration.isLast}"><f:then></f:then><f:else>;</f:else></f:if></f:for>
+</f:for>
+</arcExport:charsetConverter>
+</arcExport:trim></f:section>

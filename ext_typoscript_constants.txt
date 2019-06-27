@@ -1,0 +1,14 @@
+plugin.tx_arcexport {
+	view {
+		# cat=plugin.tx_arcexport/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:arc_export/Resources/Private/Templates/
+		# cat=plugin.tx_arcexport/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:arc_export/Resources/Private/Partials/
+		# cat=plugin.tx_arcexport/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:arc_export/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_arcexport//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}

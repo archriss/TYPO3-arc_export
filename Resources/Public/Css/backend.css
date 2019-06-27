@@ -1,0 +1,12 @@
+#typo3-inner-docbody #arc_export blockquote {
+    font-size: 0.9em;
+}
+
+#typo3-inner-docbody #arc_export .important {
+    color: red;
+}
+
+#typo3-inner-docbody .green,
+#typo3-inner-docbody #clickme {
+    color: green;
+}

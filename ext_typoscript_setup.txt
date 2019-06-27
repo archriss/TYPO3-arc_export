@@ -1,0 +1,11 @@
+module.tx_arcexport {
+	view {
+		templateRootPaths.0 = {$plugin.tx_arcexport.view.templateRootPath}
+		partialRootPaths.0 = {$plugin.tx_arcexport.view.partialRootPath}
+		layoutRootPaths.0 = {$plugin.tx_arcexport.view.layoutRootPath}
+	}
+    settings {
+        defaultExportTemplate = {$plugin.tx_arcexport.view.templateRootPath}Export/Export.csv
+        defaultDatetimeFormat = d/m/Y H:i
+    }
+}

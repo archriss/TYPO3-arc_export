@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="fr" datatype="plaintext" original="messages" date="2016-04-29T02:54:16Z" product-name="arc_export">
+		<header/>
+		<body>
+			<trans-unit id="be.admin">
+				<source>Remember to create a sys folder to store copy of file, and parameter your extensions.</source>
+                <target state="translated">N'oubliez pas de créer le sys folder pour stocker la copie des fichiers, et paramétrez vos extensions.</target>
+			</trans-unit>
+			<trans-unit id="be.adminTS">
+				<source>TS must be define in order to declare wich domain/model will let us get data export. This example show standard configuration. Repository is automaticaly calculated, but can be specified using "repository" key.</source>
+                <target state="translated">Le TS doit être défini pour déclarer quel domain/model permettra l'export de données. Cet exemple montre une configuration standard. Le repository est automatiquement calculé, mais peut être spécifié en utilisant la clé "repository".</target>
+			</trans-unit>
+			<trans-unit id="be.adminTMPL">
+				<source>Export use standard default template in order to display all field in TCA/table/interface/showRecordFieldList. Date field are parsed, but relation to other table not yet.</source>
+                <target state="translated">L'export utilise un template standard par default pour afficher les champs de TCA/table/interface/showRecordFieldList. Les date sont parsé, mais les relations vers d'autres table ne le sont pas encore.</target>
+			</trans-unit>
+			<trans-unit id="be.adminFILE">
+				<source>Storage folder must be create in order to store all exported file on the server.</source>
+                <target state="translated">Le dossier de stockage doit être créé pour pouvoir stocker tous les export fichier sur le serveur.</target>
+			</trans-unit>
+			<trans-unit id="be.adminEXPORTED">
+				<source>Domain/Repository should contain 2 functions in order to get exported limitation to work (findByExported / countByExported). This able to export only non exported data. Field name must be the same declared in TYPOSCRIPT upper.</source>
+                <target state="translated">Le Domain/Repository devrait contenir 2 fonctions pour pouvoir procéder au export limité (findByExported / countByExported). Cela permet d'exporter uniquement les données qui ne l'ont pas encore été. Le nom du champ doit être le même que celui déclaré dans le TYPOSCRIPT plus haut.</target>
+			</trans-unit>
+			<trans-unit id="be.adminEXPORTEDPic">
+				<source>This enable the module to display information circle in red in the picture bellow.</source>
+                <target state="translated">Cela permet au module d'afficher les informations en rouge dans l'image ci dessous.</target>
+			</trans-unit>
+			<trans-unit id="be.select">
+				<source>Select data to export bellow</source>
+                <target state="translated">Sélectionnez les données à exporter ci-dessous</target>
+			</trans-unit>
+			<trans-unit id="be.title">
+				<source>Data export</source>
+                <target state="translated">Export de données</target>
+			</trans-unit>
+			<trans-unit id="be.reload">
+				<source>Reload</source>
+                <target state="translated">Recharger</target>
+			</trans-unit>
+			<trans-unit id="be.selectpage">
+				<source>Please select a table to export in select menu in the header</source>
+                <target state="translated">Sélectionnez une table à exporter dans le sélecteur de menu dans le header</target>
+			</trans-unit>
+			<trans-unit id="be.warning">
+				<source><![CDATA[<span class="important">Warning:</span> Only table with data in this page will be displayed.]]></source>
+                <target state="translated"><![CDATA[<span class="important">Attention:</span> Seul les tables proposant des données dans cette page seront affiché.]]></target>
+			</trans-unit>
+			<trans-unit id="be.tableAvailable">
+				<source>Following datas are available for export:</source>
+                <target state="translated">Les données suivantes sont disponibles pour un export:</target>
+			</trans-unit>
+			<trans-unit id="be.tableAvailable.canBeSelected">
+				<source>Can be selected</source>
+                <target state="translated">Peut être sélectionné</target>
+			</trans-unit>
+			<trans-unit id="be.record.total">
+				<source>There's %d total records in this page.</source>
+                <target state="translated">Il y a dans cette page %d enregistrement(s) au total.</target>
+			</trans-unit>
+			<trans-unit id="be.record.exported">
+				<source>There's %d unexported records in this page.</source>
+                <target state="translated">Il y a dans cette page %d enregistrement(s) non exporté(s).</target>
+			</trans-unit>
+			<trans-unit id="be.record.unable">
+				<source>Unable to calculate number of unexported records in this page.</source>
+                <target state="translated">Il n'est pas possible de déterminer le nombre d'élément non exporté dans cette page.</target>
+			</trans-unit>
+			<trans-unit id="be.submit.total">
+				<source>Export all records</source>
+                <target state="translated">Exporter tous les enregistrements</target>
+			</trans-unit>
+			<trans-unit id="be.submit.exported">
+				<source>Export unexported records and mark them as exported.</source>
+                <target state="translated">Exporter les enregistrements non exporté(s) et les marquer déjà exporté(s)</target>
+			</trans-unit>
+			<trans-unit id="be.filelist">
+				<source>File list (last one on the top)</source>
+                <target state="translated">Liste des fichiers (les derniers en haut)</target>
+			</trans-unit>
+			<trans-unit id="be.filelist.doNotStart">
+				<source>If your download do not start automaticaly, you can click on the green file name, it's your download.</source>
+                <target state="translated">Si le téléchargement ne démarre pas automatiquement, vous pouvez cliquer sur le fichier en vert, c'est votre téléchargement.</target>
+			</trans-unit>
+			<trans-unit id="be.filelist.hint">
+				<source>File name (date) - size</source>
+                <target state="translated">nom du fichier (date) - taille</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

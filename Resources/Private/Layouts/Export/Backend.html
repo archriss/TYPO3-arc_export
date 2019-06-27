@@ -1,0 +1,41 @@
+{namespace arcExport=Archriss\ArcExport\ViewHelpers}
+<f:be.container includeCssFiles="{0: '{f:uri.resource(path:\'Css/backend.css\')}'}" loadJQuery="true" includeJsFiles="{0: '{f:uri.resource(path:\'Js/backend.js\')}'}">
+    <div class="module-docheader t3js-module-docheader">
+        <div class="module-docheader-bar module-docheader-bar-navigation t3js-module-docheader-bar t3js-module-docheader-bar-navigation">
+            <div class="module-docheader-bar-column-left">
+                <div class="form-inline">
+                    <f:be.menus.actionMenu>
+                        <f:be.menus.actionMenuItem label="{f:translate(key: 'be.select')}" action="listTables" controller="Export" />
+                        <f:for each="{menu}" as="items" key="table">
+                            <f:be.menus.actionMenuItemGroup label="{arcExport:getTableName(table: '{table}')}">
+                            </f:be.menus.actionMenuItemGroup>
+                                <f:for each="{items}" as="item">
+                                    <arcExport:be.menus.actionMenuItem label="{item.title}" action="summaryTable" controller="Export" arguments="{namespace: item.namespace}" currentNamespace="{namespace}" />
+                                </f:for>
+                        </f:for>
+                    </f:be.menus.actionMenu>
+                </div>
+            </div>
+            <div class="module-docheader-bar-column-right">
+                <f:be.pagePath />
+            </div>
+        </div>
+        <div class="module-docheader-bar module-docheader-bar-buttons t3js-module-docheader-bar t3js-module-docheader-bar-buttons">
+            <div class="module-docheader-bar-column-left">
+            </div>
+            <div class="module-docheader-bar-column-right">
+                <div class="btn-toolbar" role="toolbar" aria-label="">
+                    <div class="btn-group" role="group" aria-label="">
+                        <f:be.buttons.shortcut />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="typo3-docbody">
+        <div id="typo3-inner-docbody">
+            <f:flashMessages renderMode="div" />
+            <f:render section="content" />
+        </div>
+    </div>
+</f:be.container>
